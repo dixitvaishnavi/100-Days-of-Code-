@@ -1,0 +1,49 @@
+class Solution
+{     static int dx[] = {1, 0, -1, 0};
+    static int dy[] = {0, 1, 0, -1};
+    
+    private static void dfs(int x, int y, char grid[][], boolean visited[][], int n, int m)
+    {
+        visited[x][y] = true;
+        
+        for(int i=0; i<4; i++)
+        {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            
+            if(nx>=0 && ny>=0 && nx<n && ny<m && grid[nx][ny]=='X' && visited[nx][ny] == false)
+            {
+                dfs(nx, ny, grid, visited, n, m);
+            }
+            
+        }
+        
+    }
+    
+    //Function to find the number of 'X' total shapes.
+    public int xShape(char[][] grid)
+    {
+        // code here
+         int n = grid.length;
+        int m = grid[0].length;
+        int count = 0;
+        
+        boolean visited[][] = new boolean[n][m];
+        
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<m; j++)
+            {
+                if(visited[i][j]==false && grid[i][j] == 'X')
+                {
+                    count++;
+                    dfs(i, j, grid, visited, n, m);
+                }
+            }
+        }
+        
+        
+        return count;
+        
+    }
+}
