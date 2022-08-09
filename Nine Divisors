@@ -1,0 +1,60 @@
+class Solution{
+    static long nineDivisors(long N){
+        //Code Here
+        ArrayList<Long> prime = new ArrayList<>();
+        long M = (long)Math.sqrt(N);
+        int[] isPrime = new int[(int)(Math.sqrt(N)+1)];
+        Arrays.fill(isPrime,1);
+        isPrime[0] = isPrime[1] = 0;
+        
+        for(int i=2; i*i<=M; ++i){
+            if(isPrime[i] == 1){
+                for(int j=i*i; j<=M; j+=i){
+                    isPrime[j] = 0;
+                }
+            }
+            
+        }
+         for(int i=0; i<=M; ++i){
+            if(isPrime[i]==1){
+                prime.add((long)i);
+            }
+        }
+        // got primes till M
+        // use binary search
+        long cnt = 0;
+        int sz = prime.size();
+        // Number present by p1^2 * p2^2
+        for(int i=sz-1; i>=0; --i){
+            long p1 = prime.get(i);
+            long cannotExceedValue = (long)(Math.sqrt(N)/p1);
+            int low = 0;
+            int high = i-1;
+            long res = 0; // worst case 0(no number) will be added
+            while(low<=high){
+                int mid = low+(high-low)/2;
+                long p2 = prime.get(mid);
+                if(p2 <= cannotExceedValue){
+                	res = mid+1; // # cnt of primes which are ok for us
+                    low = mid+1;
+                }
+                else{
+                    high = mid-1;
+                }
+            }
+            // System.out.println(p1+" "+"cnt "+(res-i));
+            cnt += (res*1L);
+        }
+        // Number present by p^8
+        for (int i = 0; i < sz; i++) {
+            long square = prime.get(i) * prime.get(i);
+            if (square * square * square * square <= N)
+                cnt += 1;
+            else
+                break;
+        }
+        return cnt;
+        
+    
+    }
+}
