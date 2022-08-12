@@ -1,0 +1,54 @@
+//User function Template for Java
+class Solution
+{
+    public String timeToWord(int H, int M)
+    {
+        // code here
+        String time="";
+    String s1[]={"one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty","twenty one","twenty two","twenty three","twenty four","twenty five","twenty six","twenty seven","twenty eight","twenty nine"};
+    String s2="o' clock";
+    String s3="minutes past";
+    String s5="half past";
+    String s4="to";
+    String s7="quarter";
+    String s8="past";
+    String s9="minutes";
+    String s10 ="minute";
+    if(M==60)
+    {if(H==12)
+    {time="zero minutes to " + s1[0];}
+   else
+   {time="zero minutes to "+s1[H];}}
+    
+    if(M>30&&M!=45&&M<60)
+   {if(H==12)
+   { if(60-M==1)
+   {time=s1[60-M-1] +" "+s10+" "+s4+" "+s1[0];}
+   else
+   {time=s1[60-M-1] +" "+s9+" "+s4+" "+s1[0];}}
+   else
+  { if(60-M==1) 
+   { time=s1[60-M-1] +" "+s10+" "+s4+" "+s1[H];}
+    else
+    {time=s1[60-M-1] +" "+s9+" "+s4+" "+s1[H];}
+   }}
+    if(M<30&&M!=0&&M!=15&&M>0)
+    { if(M==1)
+    {time=s1[M-1]+" "+s10+" "+s8+" "+s1[H-1];}
+     else
+    { time=s1[M-1]+" "+s3+" "+s1[H-1];}}
+    if(M==30)
+    {time=s5+" "+s1[H-1];}
+    if(M==15)
+    {time=s7+" "+s8+" "+s1[H-1];}
+    if(M==45)
+    {if(H==12)
+    {time=s7+" "+s4+" "+s1[0];}
+    else
+    { time=s7+" "+s4+" "+s1[H];}}
+    if(M==0)
+    {time=s1[H-1]+" "+s2;}
+    return time;
+    
+    }
+}
