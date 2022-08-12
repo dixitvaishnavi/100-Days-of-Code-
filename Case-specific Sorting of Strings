@@ -1,0 +1,27 @@
+ class Solution
+{
+    //Function to perform case-specific sorting of strings.
+    public static String caseSort(String str)
+    {
+        // Your code here
+        PriorityQueue<Character> lower = new PriorityQueue<>();
+        PriorityQueue<Character> upper = new PriorityQueue<>();
+        for(char c : str.toCharArray()){
+            if(Character.isLowerCase(c)){
+                lower.add(c);
+            } else {
+                upper.add(c);
+            }
+        }
+        char[] chs = new char[str.length()];
+        int idx = 0;
+        for(char c : str.toCharArray()){
+            if(Character.isLowerCase(c)){
+                chs[idx++] = lower.poll();
+            } else {
+                chs[idx++] = upper.poll();
+            }
+        }
+        return new String(chs);
+    }
+}
