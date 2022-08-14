@@ -1,0 +1,24 @@
+class Solution
+{
+    static double mod = 1e9+7;
+    static long[] dp;
+    Solution(int n){ 
+        dp = new long[n+1];
+        Arrays.fill(dp, -1);
+    }
+    Solution(){}
+    public long solve(int n){
+        if(n <= 1) return 1;
+        long single = dp[n-1]==-1 ? solve(n-1) : dp[n-1];
+        long pair = dp[n-2]==-1 ? solve(n-2) : dp[n-2];
+        dp[n-1] = single%(long)mod; dp[n-2]=pair%(long)mod;
+        return dp[n]=(single + (n-1)*pair)%(long)mod;
+    }
+    public long countFriendsPairings(int n) 
+    { 
+       //code here
+        if(n<=1) return 1;
+        return new Solution(n).solve(n);
+    }
+}    
+ 
