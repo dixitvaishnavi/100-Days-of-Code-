@@ -1,0 +1,24 @@
+class Solution
+{static  int[]fact=new int[]{1,2,6,24,120,720,5040,40320,362880};
+    ArrayList<Integer> FactDigit(int N)
+    {
+        // code here
+         ArrayList<Integer>ar=new ArrayList<>();
+        for(int i=8;i>=0;i--)
+        {
+          if(N>=fact[i])
+           {
+            ar.add(0,i+1);
+            N=N-fact[i];
+           }
+           while(N>=fact[i])
+           {
+            ar.add(0,i+1) ;
+            N=N-fact[i];
+           }
+          
+        }
+
+    return ar;
+    }
+}
