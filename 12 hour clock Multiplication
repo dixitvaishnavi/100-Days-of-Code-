@@ -1,0 +1,12 @@
+class Solution {
+    static int mulClock(int num1, int num2) {
+        // code here
+         int res = num1 * num2 ;
+       
+       while( res >= 12){
+            int temp = res - 12; 
+           res = temp;
+       }
+       return res; 
+    }
+};
