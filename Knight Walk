@@ -1,0 +1,72 @@
+class Pair
+{
+    int x, y;
+    Pair(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+}
+class Solution
+{ private static boolean isValid(int x, int y, int N)
+    {
+        return (x>=0 && y>=0 && x<N && y<N);
+    }
+    public int minStepToReachTarget(int KnightPos[], int TargetPos[], int N)
+    {
+        // Code here
+         KnightPos[0]--;
+         KnightPos[1]--;
+        TargetPos[0]--;
+    TargetPos[1]--;
+        
+        boolean visited[][] = new boolean[N][N];
+        
+        Queue<Pair> queue = new ArrayDeque<>();
+        
+        queue.add(new Pair( KnightPos[0],  KnightPos[1]));
+        
+        visited[ KnightPos[0]][ KnightPos[1]] = true;
+        
+        int count = 0;
+        
+        int dx[] = {2,  2, -2, -2,  1, -1, 1, -1};
+        int dy[] = {1, -1,  1, -1, -2, -2, 2,  2};
+        
+        while(queue.isEmpty()==false)
+        {
+            
+            
+            int n = queue.size();
+            
+            for(int k=0; k<n; k++)
+            {
+                Pair p = queue.poll();
+            
+                if(p.x==TargetPos[0] && p.y==TargetPos[1]) return count;
+            
+            
+                for(int i=0; i<8; i++)
+                {
+                    int x = p.x + dx[i];
+                    int y = p.y + dy[i];
+                    
+                    if(isValid(x, y, N) && visited[x][y] == false)
+                    {
+                        visited[x][y] = true;
+                        queue.add(new Pair(x, y));
+                    }
+                    
+                }
+            }
+            
+            count++;
+            
+        }
+        
+        return -1;
+        
+        
+        
+    }
+}
