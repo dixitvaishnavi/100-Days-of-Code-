@@ -1,0 +1,30 @@
+class Solution{
+    static String getNumber(int B, int N){
+        // code here
+        String str="";
+       
+        int p=1;
+        while(N>0)
+        {
+            int d=N%B;
+             if(d<=9)
+               str=d+str;
+           else if(d==10)
+               str='A'+str;
+           else if(d==11)
+               str='B'+str;
+           else if(d==12)
+               str='C'+str;
+           else if(d==13)
+               str='D'+str;
+           else if(d==14)
+               str='E'+str;
+           else if(d==15)
+               str='F'+str;
+            N=N/B;
+            
+           
+        }
+        return str;
+    }
+}
