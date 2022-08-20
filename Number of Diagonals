@@ -1,0 +1,9 @@
+class Solution
+{
+    public long diagonals(int n) 
+    { 
+       //code here.
+       long res=(long)n*(n-3)/2;
+       return res;
+    } 
+}
