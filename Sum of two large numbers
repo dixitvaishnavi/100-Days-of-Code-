@@ -1,0 +1,10 @@
+class Solution {
+    String findSum(String X, String Y) {
+        // code here
+        java.math.BigInteger a=new java.math.BigInteger(X);
+       java.math.BigInteger b=new java.math.BigInteger(Y);
+       
+       a=a.add(b);
+       return a.toString();
+    }
+}
