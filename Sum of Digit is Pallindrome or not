@@ -1,0 +1,22 @@
+class Solution {
+    int isDigitSumPalindrome(int N) {
+        // code here
+        String s = Integer.toString(N);
+        int sum=0;
+        for(int i=0;i<s.length();i++)
+        {
+            String b=Character.toString(s.charAt(i));
+            sum+=Integer.parseInt(b);
+        }
+          String sb = Integer.toString(sum);
+       StringBuilder str = new StringBuilder(sb);
+       str.reverse();
+       if(sb.equals(str.toString()))
+       {
+           return 1;
+       }else{
+           return 0;
+       }
+        
+    }
+}
