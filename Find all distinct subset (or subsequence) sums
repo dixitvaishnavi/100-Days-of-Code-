@@ -1,0 +1,37 @@
+class Solution
+{
+    HashSet<Integer> hs = new HashSet<>();
+    
+    void memo(int[]arr, int n, int i, int sum, int[][]dp){
+        if(i==n){
+            hs.add(sum);
+            return;
+        }
+        
+        if(dp[i][sum]==1){
+            return ;
+        }
+        
+        memo(arr, n, i+1, sum+arr[i],dp);
+        memo(arr, n, i+1, sum,dp);
+        
+        dp[i][sum] = 1;
+        
+    }
+    public int[] DistinctSum(int[] nums)
+    {
+        // Code here
+         int[][]dp = new int[nums.length][10000];
+        memo(nums, nums.length, 0, 0, dp);
+        
+        int[]res = new int[hs.size()];
+        
+        int ind=0;
+        for(int i : hs){
+            res[ind] = i;
+            ind++;
+        }
+        Arrays.sort(res);
+        return res;
+    }
+}
