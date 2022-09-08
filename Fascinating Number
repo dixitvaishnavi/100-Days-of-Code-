@@ -1,0 +1,21 @@
+class Solution {
+    boolean fascinating(long n) {
+        // code here
+          long thrice = n*3;
+       long twice = n*2;
+       
+       
+         if ( n>1000){
+             return false;
+         }
+      
+         String s = n+""+twice+""+thrice;
+        char [] str = s.toCharArray();
+        char [] res = {'1','2','3','4','5','6','7','8','9'};
+        Arrays.sort(str);
+        if (Arrays.equals(str,res))
+           return true;
+       else
+           return false;
+    }
+}
