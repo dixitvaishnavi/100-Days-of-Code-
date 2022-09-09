@@ -1,0 +1,22 @@
+class Solution
+{
+    public String digitsNum(int N)
+    {
+        // Code here
+        int zeros = N;
+        StringBuilder str = new StringBuilder();
+        while (N > 0)
+        {
+            if (N>=9)
+            str.append("9");
+            else
+            str.append(Integer.valueOf(N));
+            N = N - 9;
+        }
+        str = str.reverse();
+        for (int i=0; i<zeros; i++)
+            str.append("0");
+            
+        return str.toString();
+    }
+}
