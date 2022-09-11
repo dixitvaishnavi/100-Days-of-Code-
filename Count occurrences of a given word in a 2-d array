@@ -1,0 +1,35 @@
+class Solution
+{
+     int c=0;
+    public int findOccurrence(char mat[][], String target)
+    {
+        // Write your code here
+          int n=mat.length; 
+       int m=mat[0].length; 
+       char x=target.charAt(0);
+        boolean visited[][]=new boolean[n][m];
+       for(int i=0; i<n; i++){
+           for(int j=0; j<m;j++){
+               if(mat[i][j]==x){
+                  
+                   util(mat,n,m,visited,i,j,0,target);
+               }
+           }
+       }
+       return c;
+    }
+     public void util(char a[][],int n,int m, boolean b[][],int i,int j,int ind, String target){
+       if(i<0||j<0||i>n-1||j>m-1||b[i][j]||a[i][j]!=target.charAt(ind))
+       return;
+       if(ind+1>=target.length()){
+           c++;
+           return;
+       }
+       b[i][j]=true;
+       util(a,n,m,b,i,j+1,ind+1,target);
+       util(a,n,m,b,i,j-1,ind+1,target);
+       util(a,n,m,b,i+1,j,ind+1,target);
+       util(a,n,m,b,i-1,j,ind+1,target);
+       b[i][j]=false;
+   }
+}
