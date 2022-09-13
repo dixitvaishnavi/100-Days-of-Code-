@@ -1,0 +1,46 @@
+class Solution
+{
+    public static void convertToMaxHeapUtil(Node root)
+    {
+        //code here
+        List<Integer> list = new ArrayList<>();
+
+       DFS(root,list);
+
+       BFS(root, list, new int[]{0});
+
+    }
+
+    static void DFS(Node root, List<Integer> list){
+
+        if(root==null){
+
+            return;
+
+        }
+
+        DFS(root.left, list);
+
+        list.add(root.data);
+
+        DFS(root.right, list);
+
+    }
+
+    static void BFS(Node root, List<Integer>list, int[] i){
+
+        if(root==null){
+
+            return;
+
+        }
+
+        BFS(root.left, list, i);
+
+        BFS(root.right, list, i);
+
+        root.data = list.get(i[0]);
+
+        i[0]++;
+    }
+}
